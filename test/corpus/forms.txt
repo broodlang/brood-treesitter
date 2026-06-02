@@ -1,0 +1,99 @@
+==================
+Atoms
+==================
+
+foo-bar
+:keyword
+42
+-2.5
+nil
+true
+false
+
+---
+
+(source_file
+  (symbol)
+  (keyword)
+  (number)
+  (number)
+  (nil)
+  (boolean)
+  (boolean))
+
+==================
+Collections: list, vector, map
+==================
+
+(f x 1)
+[1 2 3]
+{:a 1 :b 2}
+
+---
+
+(source_file
+  (list (symbol) (symbol) (number))
+  (vector (number) (number) (number))
+  (map (keyword) (number) (keyword) (number)))
+
+==================
+Quoting
+==================
+
+'x
+`(a ~b ~@c)
+
+---
+
+(source_file
+  (quote (symbol))
+  (quasiquote
+    (list
+      (symbol)
+      (unquote (symbol))
+      (unquote_splicing (symbol)))))
+
+==================
+Strings with escapes
+==================
+
+"hi"
+"a\nb\"c"
+
+---
+
+(source_file
+  (string)
+  (string (escape_sequence) (escape_sequence)))
+
+==================
+Comments and commas
+==================
+
+; a line comment
+(a, b, c)
+
+---
+
+(source_file
+  (comment)
+  (list (symbol) (symbol) (symbol)))
+
+==================
+Atoms that only look special are symbols
+==================
+
+nilfoo
+1abc
+->
+->>
+-
+
+---
+
+(source_file
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol))

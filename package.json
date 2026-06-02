@@ -1,0 +1,21 @@
+{
+  "name": "tree-sitter-brood",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for the Brood language (.blsp)",
+  "repository": "https://github.com/broodlang/brood-treesitter",
+  "license": "MIT",
+  "keywords": [
+    "tree-sitter",
+    "brood",
+    "lisp",
+    "parser"
+  ],
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "parse": "tree-sitter parse"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.24.0"
+  }
+}
