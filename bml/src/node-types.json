@@ -23,6 +23,102 @@
     }
   },
   {
+    "type": "component",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "component",
+          "named": true
+        },
+        {
+          "type": "component_close",
+          "named": true
+        },
+        {
+          "type": "component_open",
+          "named": true
+        },
+        {
+          "type": "component_self_closing",
+          "named": true
+        },
+        {
+          "type": "element",
+          "named": true
+        },
+        {
+          "type": "interpolation",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "component_close",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "component_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "component_open",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
+        {
+          "type": "component_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "component_self_closing",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
+        {
+          "type": "component_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "document",
     "named": true,
     "root": true,
@@ -33,6 +129,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "component",
           "named": true
         },
         {
@@ -98,6 +198,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "component",
           "named": true
         },
         {
@@ -258,7 +362,15 @@
     "named": false
   },
   {
+    "type": "<.",
+    "named": false
+  },
+  {
     "type": "</",
+    "named": false
+  },
+  {
+    "type": "</.",
     "named": false
   },
   {
@@ -279,6 +391,10 @@
   },
   {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "component_name",
     "named": true
   },
   {

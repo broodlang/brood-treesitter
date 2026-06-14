@@ -3,6 +3,9 @@
 (comment) @comment
 (tag_name) @tag
 
+;; Components (<.name>) read as types/constructors to set them apart from plain tags.
+(component_name) @type
+
 (attribute_name) @attribute
 
 ;; Directive attributes (:if / :for) read as control keywords.
@@ -17,5 +20,5 @@
 (interpolation ["{" "}"] @punctuation.special)
 (interp_braces ["{" "}"] @punctuation.bracket)
 
-["<" ">" "</" "/>"] @punctuation.bracket
+["<" ">" "</" "/>" "<." "</."] @punctuation.bracket
 "=" @operator

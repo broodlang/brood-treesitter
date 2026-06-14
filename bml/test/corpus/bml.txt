@@ -48,3 +48,24 @@ Directives
         (attribute (attribute_name) (quoted_value (attribute_text))))
       (interpolation (interp_text))
       (end_tag (tag_name)))))
+
+==================
+Components
+==================
+
+<.card title="Hi"><p>x</p></.card>
+<.icon name={@k}/>
+
+---
+
+(document
+  (component
+    (component_open
+      (component_name)
+      (attribute (attribute_name) (quoted_value (attribute_text))))
+    (element (full_element (start_tag (tag_name)) (text) (end_tag (tag_name))))
+    (component_close (component_name)))
+  (component
+    (component_self_closing
+      (component_name)
+      (attribute (attribute_name) (interpolation (interp_text))))))

@@ -4,12 +4,16 @@
  * @license MIT
  *
  * BML is Hatch's HTML-flavoured template surface (`.bml`), compiled to Brood
- * Hiccup by `web/bml`. It is HTML plus three things:
+ * Hiccup by `web/bml`. It is HTML plus:
  *   - `{expr}` interpolation in text and attribute values — `expr` is Brood, and
  *     `queries/injections.scm` injects the `brood` grammar into it.
- *   - `:if="expr"` / `:for="x <- coll"` directive attributes.
+ *   - `:if={expr}` / `:for={x <- coll}` directive attributes.
+ *   - components: `<.name …>…</.name>` (and `<.name/>`).
  * The grammar is deliberately lenient (a missing close tag parses as a void/empty
- * element) — it exists for highlighting, not validation.
+ * element) — it exists for highlighting, not validation. Raw-text elements
+ * (`<script>`/`<style>`) are NOT special-cased here: making their names keyword
+ * tokens would collide with the very common `style=` attribute, so their `{…}`
+ * content is (harmlessly) highlighted as interpolation.
  */
 
 const VOID = [
@@ -28,11 +32,23 @@ module.exports = grammar({
     document: $ => repeat($._node),
 
     _node: $ => choice(
+      $.component,
       $.element,
       $.interpolation,
       $.comment,
       $.text,
     ),
+
+    // Components: <.name …>…</.name> and <.name/>. `<.`/`</.` lex longer than `<`/`</`,
+    // so plain elements are unaffected.
+    component: $ => choice(
+      $.component_self_closing,
+      seq($.component_open, repeat($._node), $.component_close),
+    ),
+    component_open: $ => seq('<.', $.component_name, repeat($.attribute), '>'),
+    component_self_closing: $ => seq('<.', $.component_name, repeat($.attribute), '/>'),
+    component_close: $ => seq('</.', $.component_name, '>'),
+    component_name: _ => /[a-zA-Z][a-zA-Z0-9/_-]*/,
 
     // Any run that doesn't open a tag or an interpolation. Must start with a
     // non-space char so whitespace-only gaps between tags (and the trailing
