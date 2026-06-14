@@ -1,0 +1,31 @@
+{
+  "grammars": [
+    {
+      "name": "bml",
+      "camelcase": "Bml",
+      "scope": "source.bml",
+      "path": ".",
+      "file-types": [
+        "bml"
+      ],
+      "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for BML — Hatch's HTML-flavoured template surface (.bml), with Brood injected into {…} interpolations",
+    "links": {
+      "repository": "https://github.com/broodlang/brood-treesitter"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

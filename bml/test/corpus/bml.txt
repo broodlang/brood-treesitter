@@ -1,0 +1,50 @@
+==================
+Element, attribute, interpolation
+==================
+
+<p class="a">{(get model :n)}</p>
+
+---
+
+(document
+  (element
+    (full_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (attribute_name)
+          (quoted_value (attribute_text))))
+      (interpolation (interp_text))
+      (end_tag (tag_name)))))
+
+==================
+Void and self-closing
+==================
+
+<img src="x"><br/><div/>
+
+---
+
+(document
+  (element (void_element (tag_name)
+    (attribute (attribute_name) (quoted_value (attribute_text)))))
+  (element (void_element (tag_name)))
+  (element (self_closing_element (tag_name))))
+
+==================
+Directives
+==================
+
+<li :for="x <- xs" :if="flag">{x}</li>
+
+---
+
+(document
+  (element
+    (full_element
+      (start_tag
+        (tag_name)
+        (attribute (attribute_name) (quoted_value (attribute_text)))
+        (attribute (attribute_name) (quoted_value (attribute_text))))
+      (interpolation (interp_text))
+      (end_tag (tag_name)))))

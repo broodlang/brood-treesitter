@@ -57,3 +57,35 @@ vim.filetype.add({ extension = { blsp = 'brood' } })
 
 Then `:TSInstall brood` and copy `queries/highlights.scm` into your runtime's
 `queries/brood/`.
+
+## BML — the Hatch template grammar (`bml/`)
+
+A second grammar in [`bml/`](bml/) covers **BML** (`.bml`), Hatch's HTML-flavoured
+template surface (compiled to Brood Hiccup by `web/bml`). It models HTML elements,
+`{…}` interpolation, and the `:if` / `:for` directive attributes; its
+`queries/injections.scm` **injects this brood grammar into every `{…}`**, so the
+embedded Brood expressions are highlighted by the same rules as a `.blsp` file.
+
+It is a self-contained grammar with its own `bml/tree-sitter.json` (kept separate from
+the root so each grammar's `tree-sitter test` pairs with its own corpus):
+
+```sh
+cd bml
+npx tree-sitter generate
+npx tree-sitter test
+npx tree-sitter parse FILE.bml
+```
+
+Neovim install (note `location` for the subdir grammar; the brood parser must also be
+installed for the injection to resolve):
+
+```lua
+require('nvim-treesitter.parsers').get_parser_configs().bml = {
+  install_info = { url = '~/src/broodlang/brood-treesitter', location = 'bml', files = { 'src/parser.c' } },
+  filetype = 'bml',
+}
+vim.filetype.add({ extension = { bml = 'bml' } })
+```
+
+Then `:TSInstall bml` and copy `bml/queries/{highlights,injections}.scm` into
+`queries/bml/`.
