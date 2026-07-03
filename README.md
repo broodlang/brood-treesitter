@@ -89,3 +89,8 @@ vim.filetype.add({ extension = { bml = 'bml' } })
 
 Then `:TSInstall bml` and copy `bml/queries/{highlights,injections}.scm` into
 `queries/bml/`.
+
+## License
+
+Licensed under the MIT License; see [`LICENSE`](LICENSE).
+Copyright © 2026 Wilhelm Kirschbaum.
